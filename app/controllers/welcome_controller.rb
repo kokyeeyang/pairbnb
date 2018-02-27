@@ -1,5 +1,6 @@
 class WelcomeController < ApplicationController
+
 	def index
-		render template:"welcome/index"
-	end
+		# @listing = Listing.find([params[:id]])
+	end 
 end 

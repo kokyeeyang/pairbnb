@@ -1,0 +1,28 @@
+
+<input type="text" class="flatpickr">
+
+<%= form_for [@listing, @reservation] do |form| %>
+<div class="text-field">
+	<%= form.label :start_date, id:"start" %>
+	<%= form.text_field :start_date, id:"start" %>
+</div>
+
+<div class="text-field">
+	<%= form.label :end_date, id:"end" %>
+	<%= form.text_field :end_date, id:"end" %>
+</div>
+
+<div class="submit-field">
+	<%= form.submit %>
+</div>
+
+<% end %>
+
+<script>
+	flatpickr('#start', { dateFormat: 'd-m-Y'});
+	flatpickr('#start', { dateFormat: 'm/d/Y'});
+	flatpickr('#end', { dateFormat: 'd-m-Y'});
+	flatpickr('#end', { dateFormat: 'm/d/Y'});
+</script>
+
+

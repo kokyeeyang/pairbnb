@@ -1,22 +1,48 @@
-class ReservationsController<ApplicationController
-	before_action :authenticate_user!
+class ReservationsController < ApplicationController
+	# before_action :authenticate_user!
+	def index
+		@reservations = Reservation.all
+		@new_reservation = Reservation.new
 
-	def preload
-		room = Room.find(params[:room_id])
-		today = Date.today
-		reservations = room.reservations.where("start_date >= ? OR end_date >= ?", today, today)
+	end
 
-		render json:reservations
-	end 
+	def new
+		@listing = Listing.find(params[:listing_id])
+		@reservation = Reservation.new
+		
+	end
 
 	def create 
-		@reservation = current_user.reservations.create(reservation_params)
+		@listing = Listing.find(params[:listing_id])
+		@reservation = current_user.reservations.new(reservation_params)
+		@reservation.listing_id = params[:listing_id]
 
-		redirect_to @reservation.room, notice: "Your reservation has been created!"
+		 if @reservation.save
+			host = User.find(@listing.user_id)
+			ReservationMailer.booking_email(current_user, host, @reservation.id).deliver_now
+			redirect_to listing_reservation_path(@listing, @reservation) 
+			
+		else 
+			redirect_to action: 'new'
+		end
+	end
+
+	def edit
+	end
+
+	def show
+		
+	end
+
+	def update
+	end
+
+	def destroy
 	end
 
 	private
 		def reservation_params
-			params.require(:reservation).permit(:start_date, :end_date, :price, :total, :room_id)
+			params.require(:reservation).permit(:start_date, :end_date, :price, :total, :room_id, :name, :listing_id, :reservation_id)
 		end
-	end
+		
+end
