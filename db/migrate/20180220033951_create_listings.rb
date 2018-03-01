@@ -4,7 +4,7 @@ class CreateListings < ActiveRecord::Migration[5.0]
       t.string :city
       t.text :description
       t.integer :people
-      # t.references :user, index: true, foreing_key: true
+      t.references :user, index: true, foreign_key: true
       t.timestamps
     end
   end
