@@ -9,7 +9,6 @@ class ListingsController < ApplicationController
 	end 
  
 	def create
-		byebug
 		@listing = current_user.listings.new(listing_params)
 		if params[:swimming_pool]
 			@listing.amenities << "Swimming Pool"
