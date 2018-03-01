@@ -1,7 +1,6 @@
 class ListingsController < ApplicationController
 	def index
 		@listings = Listing.all
-		@new_listing = Listing.new
 		@listings = Listing.order(:city).page params[:page]
 	end
 
@@ -10,7 +9,7 @@ class ListingsController < ApplicationController
 	end 
  
 	def create
-
+		byebug
 		@listing = current_user.listings.new(listing_params)
 		if params[:swimming_pool]
 			@listing.amenities << "Swimming Pool"
