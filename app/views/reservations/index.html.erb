@@ -1,0 +1,13 @@
+<h2> All Reservations </h2>
+	<% @reservations.each do |reservation| %>
+		<%= reservation.start_date %>
+		<%= reservation.end_date %>
+<% end %>
+
+<%= link_to "Edit reservation" edit_listing_reservation_path(reservation) %>
+<%= link_to "Delete reservation" listing_reservation_path(reservation), method: :delete %>
+
+<hr>
+<% end %>
+
+<%= button_to "Go back", root_path, method: :get %>

@@ -1,0 +1,44 @@
+<h1> Make your changes here! </h1>
+
+<%= link_to "Go back", listings_path %>
+
+<%= form_for @listing do |form| %>
+<div class="text-field">
+	<%= form.label :city %>
+	<%= form.text_field :city %>
+</div>
+
+<div class="text-field">
+	<%= form.label :description %>
+	<%= form.text_field :description %>
+</div>
+
+<div class="text-field">
+	<%= form.label :people %>
+	<%= form.text_field :people %>
+</div>
+
+<div class="text-field">
+		<%= form.label :price %>
+		<%= form.text_field :price %>
+	</div>
+
+<div = "amenities">
+Amenities?
+<br>			
+<%= check_box_tag "bathroom", {:multiple => true}, nil%>
+<%= label_tag "bathroom" %>	
+<%= check_box_tag "kitchen", {:multiple => true}, nil %>
+<%= label_tag "kitchen" %>
+<%= check_box_tag "swimming_pool", {:multiple => true}, nil %>
+<%= label_tag "swimming pool" %>	
+<%= check_box_tag "gym", {:multiple => true}, nil %>
+<%= label_tag "gym" %>	
+
+</div>									
+	
+<div class="submit-field">
+	<%= form.submit %>
+</div>
+
+<% end %>

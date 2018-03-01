@@ -13,3 +13,14 @@
  *= require_tree .
  *= require_self
  */
+
+@import "bootstrap";
+@import "listing";
+h1 {
+	color: blue;
+}
+
+h2 {
+	font-family: Arial;
+}
+
