@@ -14,12 +14,14 @@ class ReservationsController < ApplicationController
 
 	def create 
 		@listing = Listing.find(params[:listing_id])
+
 		@reservation = current_user.reservations.new(reservation_params)
+
 		@reservation.listing_id = params[:listing_id]
 
 		 if @reservation.save
 			host = User.find(@listing.user_id)
-			ReservationMailer.booking_email(current_user, host, @reservation.id).deliver_now
+			ReservationMailer.booking_email(current_user, host, @reservation.id).deliver_later
 			redirect_to listing_reservation_path(@listing, @reservation) 
 			
 		else 
@@ -31,7 +33,6 @@ class ReservationsController < ApplicationController
 	end
 
 	def show
-		
 	end
 
 	def update
