@@ -22,5 +22,37 @@ h1 {
 
 h2 {
 	font-family: Arial;
+	color: blue;
+	text-align: center;
 }
+
+#airbnb_logo img {
+	width:300px;
+	height:200px;
+}
+
+#airbnb_logo {
+	display: block;
+	text-align: center;
+}
+
+img {
+	width:300px;
+	height:200px;
+}
+
+#listing {
+	text-align: center;
+	display: block;
+}
+
+#host {
+	font-size: 30px;
+}
+
+#All_listing {
+	text-align: center;
+	display: block;
+}
+
 

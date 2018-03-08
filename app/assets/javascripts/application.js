@@ -16,3 +16,29 @@
 //= require bootstrap-sprockets
 //= require turbolinks
 //= require_tree .
+
+
+// alert("hellooooo")
+$(document).ready(function(){
+	 $('#city_form').keyup(function(event){
+    debugger
+    $.ajax({
+      type: "GET",
+      url: "/search",
+      data: $(this).serialize(),
+      success:function(data){
+        var list = document.getElementById("list")
+       	list.innerHTML = ''
+
+      	data.forEach(function(listing){
+        	var option = document.createElement('option')
+      		var city = listing.city 
+      		option.value = city 
+
+      		// if( list.  ){
+      		list.appendChild(option)
+      	})
+      }
+    });
+  })
+})

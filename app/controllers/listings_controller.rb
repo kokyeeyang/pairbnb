@@ -1,13 +1,22 @@
 class ListingsController < ApplicationController
+
+		# before_action :all_listings, only: [:index, :create]
+		# respond_to :html, :js
+
+
 	def index
-		@listings = Listing.all
-		@listings = Listing.order(:city).page params[:page]
-	end
+	@listings = Listing.all
+	@listings = Listing.order(:city).page params[:page]
+	  respond_to do |format|
+	    format.html
+	    format.json
+	  end
+	end 
 
 	def new
 		@listing = Listing.new
 	end 
- 
+
 	def create
 		@listing = current_user.listings.new(listing_params)
 		if params[:swimming_pool]
@@ -18,7 +27,7 @@ class ListingsController < ApplicationController
 			@listing.amenities << "Bathroom"
 		end
 
-		if params[:kitchen]
+		if params[:kitchen]	
 			@listing.amenities << "Kitchen"
 		end
 
@@ -37,6 +46,21 @@ class ListingsController < ApplicationController
 	def edit
 		@listing = Listing.find(params[:id])
 
+	end
+
+	def search 
+		# @listings = Listing.all
+		@listings =  Listing.city(params[:city]).select(:city).distinct
+     # filtering_params(params).each do |key, value|
+     #   @listings = @listings.public_send(key, value) if value.present?
+ 
+     render json: @listings
+     # respond_to do |format|
+     # 	format.html 
+     # 	format.json { render json: @listings }
+     # end 
+    
+  	
 	end
 
 	def update
@@ -64,4 +88,10 @@ class ListingsController < ApplicationController
   def listing_params
   	params.require(:listing).permit(:description, :city, :people, :image, :price)
   end 
-end
+
+  def filtering_params(params)
+  	params.slice(:city, :people)
+  end
+
+ end 
+

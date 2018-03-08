@@ -14,8 +14,9 @@ class ReservationsController < ApplicationController
 
 	def create 
 		@listing = Listing.find(params[:listing_id])
-
+			
 		@reservation = current_user.reservations.new(reservation_params)
+
 
 		@reservation.listing_id = params[:listing_id]
 

@@ -1,5 +1,9 @@
   Rails.application.routes.draw do
-  get 'braintree/new'
+    get 'braintree/new'
+
+  # resource :listings do 
+  #   get 'search'
+  # end
 
   resources :passwords, controller: "clearance/passwords", only: [:create, :new]
   resource :session, controller: "clearance/sessions", only: [:create]
@@ -23,6 +27,7 @@ end
   get '/custom_joke' => 'welcome#random'
   get "/auth/:provider/callback" => "sessions#create_from_omniauth"
   post 'braintree/checkout'
+  get "/search" => 'listings#search'
  
 end
   

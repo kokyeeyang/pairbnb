@@ -2,19 +2,20 @@
 <html>
   <div class ="head">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <h1>Airbnb</h1>
-    <h2> Explore the world with ease! </h2>
-    <a href = "http://www.valuewalk.com/2017/02/airbnb-expects-2-8b-2017-revenue-8-5b-2020/"> <img src ="http://www.valuewalk.com/wp-content/uploads/2016/08/Airbnb.png" width="300px" height="200px"> </a>
     <br>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
 
   <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/dark.css">
-  
   </div>
 
   <body>
+  <div id="airbnb_logo">
+   <h1>Airbnb</h1>
+    <h2> Explore the world with ease! </h2>
+     <%= link_to root_path do %> <%= image_tag "http://www.valuewalk.com/wp-content/uploads/2016/08/Airbnb.png"  %> </div>  
+    <% end %>
    <% flash.each do |key, value| %>
         <div class="alert alert-<%= key %>"><%= value %></div>
       <% end %>
@@ -40,5 +41,6 @@
 		<% end %>
     </welcome>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.3.2/flatpickr.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   </body>
 </html>
